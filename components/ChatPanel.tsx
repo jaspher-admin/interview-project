@@ -3,6 +3,8 @@
 import { useEffect, useRef } from "react";
 import { useChat } from "ai/react";
 import { Send, Sparkles, Loader2 } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -113,13 +115,19 @@ function Message({ role, content }: { role: string; content: string }) {
     >
       <div
         className={cn(
-          "max-w-[85%] whitespace-pre-wrap rounded-lg px-3 py-2 text-sm leading-relaxed",
+          "max-w-[85%] rounded-lg px-3 py-2 text-sm leading-relaxed",
           isUser
-            ? "bg-primary text-primary-foreground"
+            ? "whitespace-pre-wrap bg-primary text-primary-foreground"
             : "bg-muted text-foreground"
         )}
       >
-        {content}
+        {isUser ? (
+          content
+        ) : (
+          <div className="prose prose-sm max-w-none prose-p:my-2 prose-ul:my-2 prose-ol:my-2 prose-li:my-0 prose-headings:my-2 prose-table:my-2 prose-pre:my-2 first:[&>*]:mt-0 last:[&>*]:mb-0">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+          </div>
+        )}
       </div>
     </div>
   );
