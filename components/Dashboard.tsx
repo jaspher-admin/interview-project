@@ -31,10 +31,10 @@ export function Dashboard({ initialClients }: DashboardProps) {
   }, [initialClients]);
 
   return (
-    <div className="mx-auto flex min-h-screen w-full max-w-[1400px] flex-col gap-6 px-6 py-6">
-      <header className="flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight">
+    <div className="mx-auto flex min-h-screen w-full max-w-[1400px] flex-col gap-4 px-4 py-4 sm:gap-6 sm:px-6 sm:py-6">
+      <header className="flex flex-wrap items-center justify-between gap-3 sm:gap-4">
+        <div className="min-w-0">
+          <h1 className="text-xl font-semibold tracking-tight sm:text-2xl">
             EXYT Client Knowledge Base
           </h1>
           <p className="text-sm text-muted-foreground">
@@ -46,13 +46,13 @@ export function Dashboard({ initialClients }: DashboardProps) {
         <AddClientModal onCreated={refresh} />
       </header>
 
-      <div className="grid flex-1 gap-6 lg:grid-cols-5">
-        <div className="lg:col-span-3">
+      <div className="grid flex-1 gap-4 sm:gap-6 lg:grid-cols-5">
+        <div className="min-w-0 lg:col-span-3">
           <div className={refreshing ? "opacity-70 transition-opacity" : ""}>
             <ClientsTable clients={clients} />
           </div>
         </div>
-        <aside className="lg:col-span-2 lg:sticky lg:top-6 lg:self-start">
+        <aside className="min-w-0 lg:col-span-2 lg:sticky lg:top-6 lg:self-start">
           <ChatPanel />
         </aside>
       </div>

@@ -36,7 +36,7 @@ export function ChatPanel() {
   const empty = messages.length === 0;
 
   return (
-    <div className="flex h-[calc(100vh-8rem)] flex-col rounded-lg border bg-card shadow-sm">
+    <div className="flex h-[32rem] flex-col rounded-lg border bg-card shadow-sm lg:h-[calc(100vh-8rem)]">
       <header className="flex items-center gap-2 border-b px-4 py-3">
         <Sparkles className="h-4 w-4 text-primary" />
         <h2 className="text-sm font-semibold">Knowledge base assistant</h2>

@@ -42,16 +42,16 @@ export function ClientsTable({ clients }: ClientsTableProps) {
     <TooltipProvider delayDuration={150}>
       <div className="overflow-hidden rounded-lg border bg-card">
         <div className="overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full min-w-[640px] text-sm">
             <thead className="bg-muted/40 text-left text-xs uppercase tracking-wide text-muted-foreground">
               <tr>
-                <th className="w-8 px-3 py-3" />
-                <th className="px-3 py-3 font-medium">Company</th>
-                <th className="px-3 py-3 font-medium">Industry</th>
-                <th className="px-3 py-3 text-right font-medium">Employees</th>
-                <th className="px-3 py-3 text-right font-medium">Annual Revenue</th>
-                <th className="px-3 py-3 font-medium">States</th>
-                <th className="px-3 py-3 font-medium">Created</th>
+                <th className="w-8 px-2 py-3 sm:px-3" />
+                <th className="px-2 py-3 font-medium sm:px-3">Company</th>
+                <th className="px-2 py-3 font-medium sm:px-3">Industry</th>
+                <th className="px-2 py-3 text-right font-medium sm:px-3">Employees</th>
+                <th className="px-2 py-3 text-right font-medium sm:px-3">Annual Revenue</th>
+                <th className="px-2 py-3 font-medium sm:px-3">States</th>
+                <th className="hidden px-2 py-3 font-medium sm:table-cell sm:px-3">Created</th>
               </tr>
             </thead>
             <tbody className="divide-y">
@@ -95,11 +95,11 @@ function ClientRow({ client, isOpen, stateNames, onToggle }: ClientRowProps) {
         className="cursor-pointer transition-colors hover:bg-muted/40"
         onClick={onToggle}
       >
-        <td className="px-3 py-3 align-middle">
+        <td className="px-2 py-3 align-middle sm:px-3">
           <Chevron className="h-4 w-4 text-muted-foreground" />
         </td>
-        <td className="px-3 py-3 font-medium">{client.company_name}</td>
-        <td className="px-3 py-3">
+        <td className="px-2 py-3 font-medium sm:px-3">{client.company_name}</td>
+        <td className="px-2 py-3 sm:px-3">
           <Badge
             variant="secondary"
             className={cn("font-medium", INDUSTRY_BADGE[client.industry])}
@@ -107,13 +107,13 @@ function ClientRow({ client, isOpen, stateNames, onToggle }: ClientRowProps) {
             {client.industry}
           </Badge>
         </td>
-        <td className="px-3 py-3 text-right tabular-nums">
+        <td className="px-2 py-3 text-right tabular-nums sm:px-3">
           {formatNumber(client.employee_count)}
         </td>
-        <td className="px-3 py-3 text-right tabular-nums">
+        <td className="px-2 py-3 text-right tabular-nums sm:px-3">
           {formatCurrency(client.annual_revenue)}
         </td>
-        <td className="px-3 py-3">
+        <td className="px-2 py-3 sm:px-3">
           <Tooltip>
             <TooltipTrigger asChild>
               <span className="cursor-help underline decoration-dotted underline-offset-4">
@@ -127,16 +127,19 @@ function ClientRow({ client, isOpen, stateNames, onToggle }: ClientRowProps) {
             </TooltipContent>
           </Tooltip>
         </td>
-        <td className="px-3 py-3 whitespace-nowrap text-muted-foreground">
+        <td className="hidden whitespace-nowrap px-2 py-3 text-muted-foreground sm:table-cell sm:px-3">
           {formatDate(client.created_at)}
         </td>
       </tr>
       {isOpen && (
         <tr className="bg-muted/20">
-          <td colSpan={7} className="px-6 py-4">
+          <td colSpan={7} className="px-4 py-4 sm:px-6">
             <div className="grid gap-4 sm:grid-cols-2">
               <DetailBlock title="Description" value={client.description} />
               <DetailBlock title="Notes" value={client.notes} />
+              <div className="text-xs text-muted-foreground sm:hidden">
+                Created {formatDate(client.created_at)}
+              </div>
             </div>
           </td>
         </tr>

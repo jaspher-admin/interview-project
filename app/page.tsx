@@ -16,8 +16,8 @@ export default async function HomePage() {
 
   if (loadError) {
     return (
-      <main className="mx-auto max-w-2xl px-6 py-16">
-        <h1 className="text-2xl font-semibold tracking-tight">
+      <main className="mx-auto max-w-2xl px-4 py-12 sm:px-6 sm:py-16">
+        <h1 className="text-xl font-semibold tracking-tight sm:text-2xl">
           EXYT Client Knowledge Base
         </h1>
         <div className="mt-6 rounded-lg border border-destructive/30 bg-destructive/5 p-4 text-sm">
